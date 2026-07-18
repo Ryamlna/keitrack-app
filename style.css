@@ -1,0 +1,171 @@
+/* --- FILE KHUSUS TAMPILAN / TEMA CERAH (style.css) --- */
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f4f8;
+  color: #1e293b;
+  margin: 0;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ========================================================= */
+/* KOTAK UTAMA APLIKASI (Tinggi dikunci mati 760px ala HP!) */
+/* ========================================================= */
+.kotak-aplikasi {
+  width: 100%;
+  max-width: 400px;
+  height: 760px; /* <--- KUNCI 1: Tinggi pasti, tidak akan pernah melar atau menyusut! */
+  max-height: 88vh; /* Menyesuaikan jika layar laptop/HP pendek */
+  background-color: #ffffff;
+  padding: 24px 22px 75px; /* Padding bawah 75px untuk area Navbar */
+  border-radius: 28px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+  display: flex; /* <--- KUNCI 2: Susunan vertikal (Header atas, Konten tengah, Navbar bawah) */
+  flex-direction: column;
+}
+
+/* Header & Logo */
+.judul { 
+  text-align: center; 
+  margin-bottom: 16px; 
+  flex-shrink: 0; /* Mencegah logo tergerus saat konten penuh */
+}
+.logo-gambar { width: 65px; height: 65px; object-fit: contain; margin-bottom: 6px; }
+.logo { color: #0d9488; font-size: 24px; margin: 0; font-weight: 800; letter-spacing: 0.5px; }
+.subjudul { color: #64748b; font-size: 12px; margin-top: 2px; }
+
+/* ========================================================= */
+/* HALAMAN TAB (Mengisi sisa ruang & scroll internal) */
+/* ========================================================= */
+.halaman { 
+  display: none; 
+  animation: fadeIn 0.25s ease; 
+  flex-grow: 1; /* <--- KUNCI 3: Memaksa halaman mengisi penuh ruang di tengah */
+  overflow-y: auto; /* Jika isi panjang, scroll terjadi di DALAM halaman ini saja */
+  padding-right: 4px; /* Space kecil untuk scrollbar */
+}
+.halaman.aktif { 
+  display: block; 
+}
+@keyframes fadeIn { 
+  from { opacity: 0; transform: translateY(6px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Tombol Besar (Home & Form) */
+.tombol-besar {
+  width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 16px;
+  border: none; font-size: 15px; font-weight: bold; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); transition: all 0.2s ease;
+}
+.tombol-besar:active { transform: scale(0.98); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); }
+.btn-pemasukan { background-color: #10b981; color: #ffffff; }
+.btn-pengeluaran { background-color: #f43f5e; color: #ffffff; }
+
+/* Mode Kompak untuk Tombol Home (Sebelah-sebelahan) */
+.grup-tombol-awal.mode-kompak {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.grup-tombol-awal.mode-kompak .tombol-besar {
+  width: 50%;
+  padding: 12px 6px;
+  font-size: 13px;
+  margin-bottom: 0;
+  border-radius: 14px;
+}
+
+/* KARTU RIWAYAT */
+.item-riwayat {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  padding: 12px 14px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  animation: fadeIn 0.3s ease;
+}
+.item-riwayat:hover {
+  border-color: #0d9488;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.1);
+}
+
+/* WADAH SCROLL RIWAYAT (Di Tab Riwayat) */
+.wadah-scroll-riwayat {
+  max-height: 420px; /* Batas tinggi area kartu agar filter bulan tetap diam di atas */
+  overflow-y: auto;
+  padding-right: 6px;
+}
+.wadah-scroll-riwayat::-webkit-scrollbar, .halaman::-webkit-scrollbar {
+  width: 5px;
+}
+.wadah-scroll-riwayat::-webkit-scrollbar-track, .halaman::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+.wadah-scroll-riwayat::-webkit-scrollbar-thumb, .halaman::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+.wadah-scroll-riwayat::-webkit-scrollbar-thumb:hover, .halaman::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
+}
+
+/* Input Form */
+.grup-input { margin-bottom: 14px; }
+.grup-input label, .label-kategori { display: block; font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 600; }
+.kontrol-input {
+  width: 100%; padding: 13px; border-radius: 12px; background-color: #f8fafc;
+  border: 1px solid #cbd5e1; color: #1e293b; font-size: 15px; outline: none; transition: border-color 0.2s;
+}
+.kontrol-input:focus { border-color: #0d9488; background-color: #ffffff; }
+
+/* Tombol Kategori di Tengah Form */
+.wadah-kategori { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.tombol-kategori {
+  background-color: #f8fafc; border: 1px solid #cbd5e1; color: #334155;
+  padding: 8px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.2s;
+}
+.tombol-kategori:hover { border-color: #0d9488; }
+.tombol-kategori.terpilih {
+  background-color: #10b981; color: #ffffff; font-weight: bold;
+  border-color: #10b981; transform: scale(1.05); box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.tombol-batal { width: 100%; background: none; border: none; color: #64748b; padding: 10px; margin-top: 4px; cursor: pointer; font-size: 13px; }
+.tombol-batal:hover { color: #1e293b; }
+
+/* Kartu Laporan & Brankas */
+.kartu-laporan { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 20px; padding: 18px; margin-top: 10px; }
+.kartu-brankas { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 20px; padding: 22px 18px; text-align: center; margin-top: 10px; }
+.btn-privasi { background: #e2e8f0; border: none; color: #334155; padding: 8px 16px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.btn-privasi:hover { background: #cbd5e1; }
+
+/* Bottom Navbar */
+.navbar-bawah {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  background-color: #ffffff; border-top: 1px solid #e2e8f0;
+  display: flex; justify-content: space-around; z-index: 100;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.03);
+}
+.navbar-bawah > button {
+  background: none; border: none; color: #64748b;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; font-size: 11px; cursor: pointer; width: 25%; padding: 12px 0;
+}
+.navbar-bawah > button.aktif { color: #0d9488; font-weight: bold; }
+.nav-icon { font-size: 20px; }
